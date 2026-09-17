@@ -14,26 +14,26 @@
 
 ## T0 — Recon & Foundation
 
-- [ ] **T0.1 Audit the existing scaffold**
+- [x] **T0.1 Audit the existing scaffold**
   - Read `components.json`, `package.json`, `vite.config.ts`, `tsconfig.json`, `src/index.css`, and list `src/components/ui/`.
   - Record: Tailwind major version, primitives library (`@radix-ui/*` vs `@base-ui-components/*`), icon package, available theme tokens, dark-mode mechanism, `@/*` alias status.
   - **Acceptance:** a short written summary of the above exists (in the PR description or a scratch note); no code changed yet.
 
-- [ ] **T0.2 Verify the API contract**
+- [x] **T0.2 Verify the API contract**
   - `curl https://equran.id/api/v2/surat | head` and `curl https://equran.id/api/v2/surat/1`.
   - Compare against the types in `PLAN.md` §4.
   - **Acceptance:** `src/types/quran.ts` created, matching the **live** response exactly. Any deviation from PLAN.md is noted in the commit message.
 
-- [ ] **T0.3 Install missing dependencies**
+- [x] **T0.3 Install missing dependencies**
   - Install only what `package.json` lacks: `@tanstack/react-query`, `react-router-dom`, `zustand`.
   - **Acceptance:** install succeeds, dev server still boots, no duplicate UI/icon libraries introduced.
 
-- [ ] **T0.4 API client layer**
+- [x] **T0.4 API client layer**
   - `src/api/client.ts`: a typed `fetchApi<T>(path)` that unwraps `ApiResponse<T>`, throws a typed error on non-200 `code` or network failure.
   - `src/api/quran.ts`: `getSurahList()`, `getSurahDetail(nomor)`, `getTafsir(nomor)`.
   - **Acceptance:** functions are typed with no `any`; errors surface a readable message.
 
-- [ ] **T0.5 App shell, providers, routing**
+- [x] **T0.5 App shell, providers, routing**
   - Wrap the app in `QueryClientProvider` (defaults: `staleTime: Infinity`, `gcTime: 24h`, `retry: 2`) and `BrowserRouter`.
   - Create `src/components/layout/AppShell.tsx` + `Navbar.tsx`; register all routes from PLAN.md §5 with placeholder pages.
   - **Acceptance:** every route renders its placeholder; unknown paths hit NotFound; layout uses preset tokens only.
