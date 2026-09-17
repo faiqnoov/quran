@@ -63,7 +63,7 @@
 
 ## T2 — Surah Detail
 
-- [ ] **T2.1 `useSurahDetail` hook**
+- [x] **T2.1 `useSurahDetail` hook**
   - Key `['surah', nomor]`; guard invalid `nomor` (non-numeric, <1, >114) → redirect to NotFound.
   - **Acceptance:** invalid params never trigger a fetch.
 
