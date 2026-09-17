@@ -42,20 +42,20 @@
 
 ## T1 — Surah List (Home)
 
-- [ ] **T1.1 `useSurahList` hook**
+- [x] **T1.1 `useSurahList` hook**
   - TanStack Query hook on key `['surahs']` calling `getSurahList()`.
   - **Acceptance:** returns 114 typed items; a second mount refetches nothing.
 
-- [ ] **T1.2 `SurahCard` + `SurahList`**
+- [x] **T1.2 `SurahCard` + `SurahList`**
   - Card shows: number badge, Arabic name, latin name, Indonesian meaning, ayah count, revelation place. Whole card is a link to `/surah/:nomor`.
   - Use shadcn `card` (add via CLI if absent).
   - **Acceptance:** grid is 1 column at 360 px, 2 at ≥768 px, 3 at ≥1280 px; Arabic name renders RTL; card is keyboard-focusable.
 
-- [ ] **T1.3 Loading / error / empty states**
+- [x] **T1.3 Loading / error / empty states**
   - `LoadingSkeleton` (shadcn `skeleton`), `ErrorState` (message + retry button calling `refetch`), `EmptyState`.
   - **Acceptance:** all three reachable — verify error by temporarily pointing the client at a bad URL.
 
-- [ ] **T1.4 Home page assembly**
+- [x] **T1.4 Home page assembly**
   - Compose search bar slot (placeholder for now) + surah list.
   - **Acceptance:** `/` lists all 114 surahs from live data.
 
