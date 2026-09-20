@@ -71,7 +71,7 @@
   - Surah name (Arabic + latin), meaning, ayah count, revelation place, sanitized `deskripsi` in a collapsible.
   - **Acceptance:** no raw HTML tags visible; collapsed by default.
 
-- [ ] **T2.3 `AyahItem` + `BismillahHeader`**
+- [x] **T2.3 `AyahItem` + `BismillahHeader`**
   - Per ayah: number marker, Arabic (RTL, `line-height` ≥ 2, ≥ 24 px on mobile), latin transliteration, Indonesian translation.
   - Bismillah header rendered for every surah **except 1 and 9**.
   - **Acceptance:** text is never truncated or transformed; long surahs (e.g. 2) scroll smoothly.

@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom"
 import { useSurahDetail } from "@/hooks/useSurahDetail"
 import { SurahHeader } from "@/components/surah/SurahHeader"
+import { AyahItem } from "@/components/ayah/AyahItem"
+import { BismillahHeader } from "@/components/ayah/BismillahHeader"
 import { ErrorState } from "@/components/common/ErrorState"
 import { Skeleton } from "@/components/ui/skeleton"
 
@@ -11,6 +13,7 @@ export function SurahDetailPage() {
   if (isLoading) {
     return (
       <div className="space-y-6">
+        {/* Header skeleton */}
         <div className="rounded-2xl border border-border bg-card p-6 shadow-xs">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="space-y-2">
@@ -23,6 +26,18 @@ export function SurahDetailPage() {
             </div>
             <Skeleton className="h-10 w-24" />
           </div>
+        </div>
+
+        {/* Ayah list skeleton */}
+        <div className="space-y-0 divide-y divide-border/50">
+          {Array.from({ length: 5 }, (_, i) => (
+            <div key={i} className="py-6 space-y-4">
+              <Skeleton className="size-8 rounded-full" />
+              <Skeleton className="ml-auto h-8 w-4/5" />
+              <Skeleton className="h-4 w-3/4" />
+              <Skeleton className="h-4 w-2/3" />
+            </div>
+          ))}
         </div>
       </div>
     )
@@ -40,8 +55,23 @@ export function SurahDetailPage() {
   return (
     <div className="space-y-6">
       <SurahHeader surah={surah} />
+
+      <div>
+        <BismillahHeader surahNomor={surah.nomor} />
+
+        <div>
+          {surah.ayat.map((ayah) => (
+            <AyahItem
+              key={ayah.nomorAyat}
+              ayah={ayah}
+              surahNomor={surah.nomor}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   )
 }
+
 
 
