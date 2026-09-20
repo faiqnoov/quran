@@ -67,7 +67,7 @@
   - Key `['surah', nomor]`; guard invalid `nomor` (non-numeric, <1, >114) → redirect to NotFound.
   - **Acceptance:** invalid params never trigger a fetch.
 
-- [ ] **T2.2 `SurahHeader`**
+- [x] **T2.2 `SurahHeader`**
   - Surah name (Arabic + latin), meaning, ayah count, revelation place, sanitized `deskripsi` in a collapsible.
   - **Acceptance:** no raw HTML tags visible; collapsed by default.
 
