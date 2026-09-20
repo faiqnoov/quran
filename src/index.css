@@ -111,6 +111,7 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --animate-ayah-highlight: ayah-highlight 2s ease-out forwards;
 }
 
 @layer base {
@@ -121,3 +122,13 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes ayah-highlight {
+  0% {
+    background-color: oklch(from var(--primary) l c h / 0.2);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+

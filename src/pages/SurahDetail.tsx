@@ -1,4 +1,5 @@
-import { useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { useParams, useSearchParams } from "react-router-dom"
 import { useSurahDetail } from "@/hooks/useSurahDetail"
 import { SurahHeader } from "@/components/surah/SurahHeader"
 import { AyahItem } from "@/components/ayah/AyahItem"
@@ -8,7 +9,33 @@ import { Skeleton } from "@/components/ui/skeleton"
 
 export function SurahDetailPage() {
   const { nomor } = useParams<{ nomor: string }>()
+  const [searchParams] = useSearchParams()
   const { data: surah, isLoading, isError, error, refetch } = useSurahDetail()
+
+  const ayatParam = searchParams.get("ayat")
+  const targetAyat = ayatParam ? Number(ayatParam) : null
+  const [highlightedAyat, setHighlightedAyat] = useState<number | null>(null)
+
+  // Scroll to the target ayah once data is loaded
+  useEffect(() => {
+    if (!surah || !targetAyat) return
+    if (targetAyat < 1 || targetAyat > surah.jumlahAyat) return
+
+    // Wait a tick for DOM to render the ayah elements
+    const timeout = setTimeout(() => {
+      const el = document.getElementById(`ayah-${targetAyat}`)
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" })
+        setHighlightedAyat(targetAyat)
+
+        // Clear the highlight after the animation (2s) completes
+        const clearTimer = setTimeout(() => setHighlightedAyat(null), 2500)
+        return () => clearTimeout(clearTimer)
+      }
+    }, 100)
+
+    return () => clearTimeout(timeout)
+  }, [surah, targetAyat])
 
   if (isLoading) {
     return (
@@ -65,6 +92,7 @@ export function SurahDetailPage() {
               key={ayah.nomorAyat}
               ayah={ayah}
               surahNomor={surah.nomor}
+              isHighlighted={highlightedAyat === ayah.nomorAyat}
             />
           ))}
         </div>
@@ -72,6 +100,7 @@ export function SurahDetailPage() {
     </div>
   )
 }
+
 
 
 

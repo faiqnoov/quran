@@ -3,6 +3,8 @@ import type { Ayah } from "@/types/quran"
 interface AyahItemProps {
   ayah: Ayah
   surahNomor: number
+  /** When true, applies a brief highlight pulse animation (used for deep-links). */
+  isHighlighted?: boolean
 }
 
 /**
@@ -13,11 +15,15 @@ interface AyahItemProps {
  * ensure readability and proper diacritic rendering.
  * Text is never truncated or transformed.
  */
-export function AyahItem({ ayah, surahNomor }: AyahItemProps) {
+export function AyahItem({ ayah, surahNomor, isHighlighted }: AyahItemProps) {
   return (
     <article
       id={`ayah-${ayah.nomorAyat}`}
-      className="group scroll-mt-20 border-b border-border/50 py-6 last:border-b-0"
+      className={`group scroll-mt-20 border-b border-border/50 py-6 last:border-b-0 ${
+        isHighlighted
+          ? "animate-ayah-highlight rounded-xl -mx-3 px-3"
+          : ""
+      }`}
     >
       {/* Ayah number marker */}
       <div className="mb-4 flex items-center gap-3">
@@ -47,3 +53,4 @@ export function AyahItem({ ayah, surahNomor }: AyahItemProps) {
     </article>
   )
 }
+

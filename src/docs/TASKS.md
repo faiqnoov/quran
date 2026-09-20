@@ -76,7 +76,7 @@
   - Bismillah header rendered for every surah **except 1 and 9**.
   - **Acceptance:** text is never truncated or transformed; long surahs (e.g. 2) scroll smoothly.
 
-- [ ] **T2.4 Ayah deep-link**
+- [x] **T2.4 Ayah deep-link**
   - Support `?ayat=n`: scroll to that ayah on mount and highlight it briefly.
   - **Acceptance:** `/surah/2?ayat=255` lands on Ayat al-Kursi.
 
