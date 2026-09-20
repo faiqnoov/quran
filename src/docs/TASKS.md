@@ -80,7 +80,7 @@
   - Support `?ayat=n`: scroll to that ayah on mount and highlight it briefly.
   - **Acceptance:** `/surah/2?ayat=255` lands on Ayat al-Kursi.
 
-- [ ] **T2.5 Prev/next surah navigation**
+- [x] **T2.5 Prev/next surah navigation**
   - Driven by `suratSebelumnya` / `suratSelanjutnya` (both can be `false`).
   - **Acceptance:** surah 1 hides "previous", surah 114 hides "next".
 

@@ -4,6 +4,7 @@ import { useSurahDetail } from "@/hooks/useSurahDetail"
 import { SurahHeader } from "@/components/surah/SurahHeader"
 import { AyahItem } from "@/components/ayah/AyahItem"
 import { BismillahHeader } from "@/components/ayah/BismillahHeader"
+import { SurahNavigation } from "@/components/surah/SurahNavigation"
 import { ErrorState } from "@/components/common/ErrorState"
 import { Skeleton } from "@/components/ui/skeleton"
 
@@ -97,6 +98,11 @@ export function SurahDetailPage() {
           ))}
         </div>
       </div>
+
+      <SurahNavigation
+        prev={surah.suratSebelumnya}
+        next={surah.suratSelanjutnya}
+      />
     </div>
   )
 }
