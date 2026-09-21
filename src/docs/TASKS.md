@@ -88,12 +88,12 @@
 
 ## T3 — Search
 
-- [ ] **T3.1 `useDebounce` + `useSearch`**
+- [x] **T3.1 `useDebounce` + `useSearch`**
   - Debounce 300 ms. Filter the cached `['surahs']` list on `namaLatin` (diacritic- and case-insensitive), `arti`, and `nomor`.
   - Detect `"2:255"` / `"2 255"` → return a direct-navigation intent.
   - **Acceptance:** "baqarah", "BAQARAH", "sapi", and "2" all find Al-Baqarah.
 
-- [ ] **T3.2 `SearchBar` + `/search` page**
+- [x] **T3.2 `SearchBar` + `/search` page**
   - shadcn `input` with an icon; query synced to the URL (`/search?q=`); results reuse `SurahCard`.
   - **Acceptance:** results survive a page refresh; empty query shows a hint, no matches shows `EmptyState`; `"2:255"` navigates straight to the ayah.
 
