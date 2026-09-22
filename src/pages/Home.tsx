@@ -5,6 +5,7 @@ import { LoadingSkeleton } from "@/components/common/LoadingSkeleton"
 import { ErrorState } from "@/components/common/ErrorState"
 import { EmptyState } from "@/components/common/EmptyState"
 import { SearchBar } from "@/components/common/SearchBar"
+import { ContinueReadingCard } from "@/components/common/ContinueReadingCard"
 
 export function HomePage() {
   const { data: surahs, isLoading, isError, error, refetch } = useSurahList()
@@ -20,6 +21,8 @@ export function HomePage() {
           }
         }}
       />
+
+      <ContinueReadingCard />
 
       {/* Surah list with loading / error / empty states */}
       {isLoading ? (
@@ -39,3 +42,4 @@ export function HomePage() {
     </div>
   )
 }
+

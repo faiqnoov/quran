@@ -113,7 +113,7 @@
   - On surah detail, track the topmost visible ayah (IntersectionObserver, throttled) and persist it.
   - **Acceptance:** writes are throttled (not per scroll event); reopening the app resumes from the right ayah.
 
-- [ ] **T4.4 `/bookmarks` page + continue-reading card**
+- [x] **T4.4 `/bookmarks` page + continue-reading card**
   - Bookmarks list with snippet, jump link, and remove action. Home shows a "continue reading" card when last-read exists.
   - **Acceptance:** jumping from a bookmark lands on the exact ayah; empty bookmarks shows `EmptyState`.
 
