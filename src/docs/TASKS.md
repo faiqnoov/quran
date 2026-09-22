@@ -105,7 +105,7 @@
   - `bookmarkStore` (`quran-bookmarks`), `lastReadStore` (`quran-last-read`), `settingsStore` (`quran-settings`) — all with `persist`. Shapes are in PLAN.md §5.
   - **Acceptance:** state survives a full page reload; malformed/absent `localStorage` data doesn't crash the app.
 
-- [ ] **T4.2 Ayah actions**
+- [x] **T4.2 Ayah actions**
   - Per-ayah: bookmark toggle (filled when saved) and copy-to-clipboard (Arabic + translation + reference). Toast feedback via shadcn `sonner`.
   - **Acceptance:** toggling twice leaves no duplicate entry; icon-only buttons have `aria-label`.
 

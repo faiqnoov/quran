@@ -93,6 +93,7 @@ export function SurahDetailPage() {
               key={ayah.nomorAyat}
               ayah={ayah}
               surahNomor={surah.nomor}
+              surahName={surah.namaLatin}
               isHighlighted={highlightedAyat === ayah.nomorAyat}
             />
           ))}

@@ -6,6 +6,7 @@ import { SurahDetailPage } from "@/pages/SurahDetail"
 import { SearchPage } from "@/pages/Search"
 import { BookmarksPage } from "@/pages/Bookmarks"
 import { NotFoundPage } from "@/pages/NotFound"
+import { Toaster } from "@/components/ui/sonner"
 
 const TWENTY_FOUR_HOURS = 1000 * 60 * 60 * 24
 
@@ -33,6 +34,7 @@ export function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      <Toaster position="bottom-center" />
     </QueryClientProvider>
   )
 }

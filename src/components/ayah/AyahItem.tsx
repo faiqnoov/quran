@@ -1,8 +1,10 @@
 import type { Ayah } from "@/types/quran"
+import { AyahActions } from "@/components/ayah/AyahActions"
 
 interface AyahItemProps {
   ayah: Ayah
   surahNomor: number
+  surahName: string
   /** When true, applies a brief highlight pulse animation (used for deep-links). */
   isHighlighted?: boolean
 }
@@ -15,7 +17,7 @@ interface AyahItemProps {
  * ensure readability and proper diacritic rendering.
  * Text is never truncated or transformed.
  */
-export function AyahItem({ ayah, surahNomor, isHighlighted }: AyahItemProps) {
+export function AyahItem({ ayah, surahNomor, surahName, isHighlighted }: AyahItemProps) {
   return (
     <article
       id={`ayah-${ayah.nomorAyat}`}
@@ -25,11 +27,16 @@ export function AyahItem({ ayah, surahNomor, isHighlighted }: AyahItemProps) {
           : ""
       }`}
     >
-      {/* Ayah number marker */}
-      <div className="mb-4 flex items-center gap-3">
+      {/* Ayah number marker + actions */}
+      <div className="mb-4 flex items-center justify-between gap-3">
         <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">
           {surahNomor}:{ayah.nomorAyat}
         </span>
+        <AyahActions
+          ayah={ayah}
+          surahNumber={surahNomor}
+          surahName={surahName}
+        />
       </div>
 
       {/* Arabic text — RTL, generous line-height, never truncated */}
