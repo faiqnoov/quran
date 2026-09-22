@@ -101,7 +101,7 @@
 
 ## T4 — Bookmarks & Last Read
 
-- [ ] **T4.1 Zustand stores**
+- [x] **T4.1 Zustand stores**
   - `bookmarkStore` (`quran-bookmarks`), `lastReadStore` (`quran-last-read`), `settingsStore` (`quran-settings`) — all with `persist`. Shapes are in PLAN.md §5.
   - **Acceptance:** state survives a full page reload; malformed/absent `localStorage` data doesn't crash the app.
 
