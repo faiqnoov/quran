@@ -109,7 +109,7 @@
   - Per-ayah: bookmark toggle (filled when saved) and copy-to-clipboard (Arabic + translation + reference). Toast feedback via shadcn `sonner`.
   - **Acceptance:** toggling twice leaves no duplicate entry; icon-only buttons have `aria-label`.
 
-- [ ] **T4.3 Auto-save last read**
+- [x] **T4.3 Auto-save last read**
   - On surah detail, track the topmost visible ayah (IntersectionObserver, throttled) and persist it.
   - **Acceptance:** writes are throttled (not per scroll event); reopening the app resumes from the right ayah.
 

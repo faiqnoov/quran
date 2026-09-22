@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams, useSearchParams } from "react-router-dom"
 import { useSurahDetail } from "@/hooks/useSurahDetail"
+import { useLastReadTracker } from "@/hooks/useLastReadTracker"
 import { SurahHeader } from "@/components/surah/SurahHeader"
 import { AyahItem } from "@/components/ayah/AyahItem"
 import { BismillahHeader } from "@/components/ayah/BismillahHeader"
@@ -12,6 +13,9 @@ export function SurahDetailPage() {
   const { nomor } = useParams<{ nomor: string }>()
   const [searchParams] = useSearchParams()
   const { data: surah, isLoading, isError, error, refetch } = useSurahDetail()
+
+  // Auto-save the topmost visible ayah as last-read position
+  useLastReadTracker(surah?.nomor, surah?.namaLatin)
 
   const ayatParam = searchParams.get("ayat")
   const targetAyat = ayatParam ? Number(ayatParam) : null
