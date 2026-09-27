@@ -121,7 +121,7 @@
 
 ## T5 — Polish
 
-- [ ] **T5.1 Theme toggle**
+- [x] **T5.1 Theme toggle**
   - Light / dark / system, driven by `settingsStore` and the preset's dark-mode mechanism.
   - **Acceptance:** no flash of wrong theme on load; preset tokens untouched.
 

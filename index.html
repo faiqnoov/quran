@@ -6,6 +6,27 @@
     <link rel="alternate icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Al-Qur'an</title>
+    <!-- Prevent flash of wrong theme: apply .dark before first paint -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('quran-settings')
+          var settings = stored ? JSON.parse(stored) : null
+          var theme = settings && settings.state && settings.state.theme
+            ? settings.state.theme
+            : 'system'
+          var resolved = theme === 'system'
+            ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+            : theme
+          document.documentElement.classList.add(resolved)
+        } catch (e) {
+          // If anything fails, default to system preference
+          if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark')
+          }
+        }
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

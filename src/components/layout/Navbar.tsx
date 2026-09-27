@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import { BookOpen } from "lucide-react"
+import { ThemeToggle } from "./ThemeToggle"
 
 export function Navbar() {
   return (
@@ -21,8 +22,10 @@ export function Navbar() {
           >
             Bookmark
           </Link>
+          <ThemeToggle />
         </div>
       </nav>
     </header>
   )
 }
+
