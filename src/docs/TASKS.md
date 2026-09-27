@@ -125,7 +125,7 @@
   - Light / dark / system, driven by `settingsStore` and the preset's dark-mode mechanism.
   - **Acceptance:** no flash of wrong theme on load; preset tokens untouched.
 
-- [ ] **T5.2 Reading settings**
+- [x] **T5.2 Reading settings**
   - Arabic font size (sm/md/lg), show/hide latin, show/hide translation — in a shadcn `sheet` or `dialog`.
   - **Acceptance:** settings apply instantly and persist.
 

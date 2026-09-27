@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { BookOpen } from "lucide-react"
 import { ThemeToggle } from "./ThemeToggle"
+import { ReadingSettingsSheet } from "./ReadingSettingsSheet"
 
 export function Navbar() {
   return (
@@ -15,13 +16,14 @@ export function Navbar() {
           <span>Qur'an</span>
         </Link>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           <Link
             to="/bookmarks"
-            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+            className="px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             Bookmark
           </Link>
+          <ReadingSettingsSheet />
           <ThemeToggle />
         </div>
       </nav>

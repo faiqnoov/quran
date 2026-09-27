@@ -1,5 +1,6 @@
 import type { Ayah } from "@/types/quran"
 import { AyahActions } from "@/components/ayah/AyahActions"
+import { useSettingsStore, type ArabicFontSize } from "@/store/settingsStore"
 
 interface AyahItemProps {
   ayah: Ayah
@@ -7,6 +8,12 @@ interface AyahItemProps {
   surahName: string
   /** When true, applies a brief highlight pulse animation (used for deep-links). */
   isHighlighted?: boolean
+}
+
+const ARABIC_SIZE_CLASSES: Record<ArabicFontSize, string> = {
+  sm: "text-2xl leading-[2.2] sm:text-2xl sm:leading-[2.2]",
+  md: "text-3xl leading-[2.2] sm:text-3xl sm:leading-[2.2]",
+  lg: "text-4xl leading-[2.2] sm:text-4xl sm:leading-[2.2]",
 }
 
 /**
@@ -18,6 +25,10 @@ interface AyahItemProps {
  * Text is never truncated or transformed.
  */
 export function AyahItem({ ayah, surahNomor, surahName, isHighlighted }: AyahItemProps) {
+  const arabicFontSize = useSettingsStore((s) => s.arabicFontSize)
+  const showLatin = useSettingsStore((s) => s.showLatin)
+  const showTranslation = useSettingsStore((s) => s.showTranslation)
+
   return (
     <article
       id={`ayah-${ayah.nomorAyat}`}
@@ -43,20 +54,26 @@ export function AyahItem({ ayah, surahNomor, surahName, isHighlighted }: AyahIte
       <p
         dir="rtl"
         lang="ar"
-        className="mb-4 text-right font-serif text-2xl leading-[2.2] text-foreground sm:text-3xl sm:leading-[2.2]"
+        className={`mb-4 text-right font-serif text-foreground transition-all duration-150 ${
+          ARABIC_SIZE_CLASSES[arabicFontSize] || ARABIC_SIZE_CLASSES.md
+        }`}
       >
         {ayah.teksArab}
       </p>
 
       {/* Latin transliteration */}
-      <p className="mb-2 text-sm leading-relaxed text-muted-foreground italic">
-        {ayah.teksLatin}
-      </p>
+      {showLatin && (
+        <p className="mb-2 text-sm leading-relaxed text-muted-foreground italic">
+          {ayah.teksLatin}
+        </p>
+      )}
 
       {/* Indonesian translation */}
-      <p className="text-sm leading-relaxed text-foreground/80">
-        {ayah.teksIndonesia}
-      </p>
+      {showTranslation && (
+        <p className="text-sm leading-relaxed text-foreground/80">
+          {ayah.teksIndonesia}
+        </p>
+      )}
     </article>
   )
 }
