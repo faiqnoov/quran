@@ -5,8 +5,8 @@
 ## Working Agreement
 
 - Do **one task at a time**. Finish its acceptance criteria before starting the next.
-- After each task: `pnpm build` must pass with zero TypeScript errors, mark task as done in this file, then commit.
-- Commit format: `feat(scope): summary` / `fix(scope): summary` / `chore(scope): summary`.
+- After each task: `pnpm build` must pass with zero TypeScript errors, then mark task as done in this file.
+- Give commit message recommendation after each task using conventional commits format: `feat(scope): summary` / `fix(scope): summary` / `chore(scope): summary`.
 - If a task's assumption turns out wrong (API shape, existing file, preset config), **stop and report** rather than working around it silently.
 - Never modify the preset's theme tokens or `src/components/ui/` files unless a task says so explicitly.
 
