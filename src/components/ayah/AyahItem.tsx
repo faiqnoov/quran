@@ -32,7 +32,7 @@ export function AyahItem({ ayah, surahNomor, surahName, isHighlighted }: AyahIte
   return (
     <article
       id={`ayah-${ayah.nomorAyat}`}
-      className={`group scroll-mt-20 border-b border-border/50 py-6 last:border-b-0 ${
+      className={`group scroll-mt-20 border-b border-border/50 py-4 last:border-b-0 ${
         isHighlighted
           ? "animate-ayah-highlight rounded-xl -mx-2 px-2 sm:-mx-3 sm:px-3"
           : ""
@@ -41,7 +41,7 @@ export function AyahItem({ ayah, surahNomor, surahName, isHighlighted }: AyahIte
       {/* Ayah number marker + actions */}
       <div className="mb-4 flex items-center justify-between gap-3">
         <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">
-          {surahNomor}:{ayah.nomorAyat}
+          {ayah.nomorAyat}
         </span>
         <AyahActions
           ayah={ayah}
