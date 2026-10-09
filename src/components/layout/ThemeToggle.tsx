@@ -48,15 +48,21 @@ export function ThemeToggle() {
 
   return (
     <div className="relative" ref={menuRef}>
-      {/* Long press / right-click → dropdown; single click → cycle */}
+      {/* Long press / right-click or ArrowDown → dropdown; single click → cycle */}
       <Button
         id="theme-toggle"
         variant="ghost"
         size="icon"
-        aria-label={`Tema saat ini: ${currentEntry.label}. Klik untuk mengganti.`}
-        aria-haspopup="true"
+        aria-label={`Tema saat ini: ${currentEntry.label}. Klik untuk mengganti atau tekan panah bawah untuk menu.`}
+        aria-haspopup="menu"
         aria-expanded={open}
         onClick={handleCycle}
+        onKeyDown={(e) => {
+          if (e.key === "ArrowDown") {
+            e.preventDefault()
+            setOpen(true)
+          }
+        }}
         onContextMenu={(e) => {
           e.preventDefault()
           setOpen((v) => !v)
@@ -82,14 +88,15 @@ export function ThemeToggle() {
           {THEMES.map(({ value, label, icon }) => (
             <button
               key={value}
+              type="button"
               role="menuitem"
               onClick={() => {
                 setTheme(value)
                 setOpen(false)
               }}
               className={[
-                "flex w-full items-center gap-2.5 rounded-md px-3 py-1.5 text-sm transition-colors",
-                "hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none",
+                "flex w-full items-center gap-2.5 rounded-md px-3 py-1.5 text-sm transition-colors outline-none",
+                "hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus-visible:ring-1 focus-visible:ring-ring",
                 theme === value
                   ? "text-primary font-medium"
                   : "text-muted-foreground",

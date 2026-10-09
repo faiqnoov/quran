@@ -13,6 +13,7 @@ export function HomePage() {
 
   return (
     <div className="space-y-6">
+      <h1 className="sr-only">Al-Qur'an Digital - Baca dan Cari Surah</h1>
       <SearchBar
         value=""
         onChange={(val) => {

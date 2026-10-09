@@ -9,7 +9,7 @@ export function NotFoundPage() {
       </p>
       <Link
         to="/"
-        className="mt-6 text-sm font-medium text-primary underline underline-offset-4 transition-colors hover:text-primary/80"
+        className="mt-6 rounded-md text-sm font-medium text-primary underline underline-offset-4 transition-colors hover:text-primary/80 outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
         Kembali ke Beranda
       </Link>

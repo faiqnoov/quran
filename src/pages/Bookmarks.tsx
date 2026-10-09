@@ -24,10 +24,14 @@ function BookmarkItem({ bookmark }: { bookmark: Bookmark }) {
           {/* Jump link — takes most of the row */}
           <Link
             to={`/surah/${bookmark.surahNumber}?ayat=${bookmark.ayahNumber}`}
-            className="min-w-0 flex-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
+            className="min-w-0 flex-1 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            aria-label={`Buka ${bookmark.surahName} ayat ${bookmark.ayahNumber}`}
           >
             <div className="flex items-start gap-3">
-              <span className="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full bg-primary/10 text-[10px] font-bold text-primary">
+              <span
+                className="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full bg-primary/10 text-[10px] font-bold text-primary"
+                aria-hidden="true"
+              >
                 {bookmark.surahNumber}:{bookmark.ayahNumber}
               </span>
               <div className="min-w-0 flex-1">
@@ -38,7 +42,7 @@ function BookmarkItem({ bookmark }: { bookmark: Bookmark }) {
                   {bookmark.snippet}
                 </p>
               </div>
-              <ArrowRight className="mt-1 size-4 shrink-0 text-muted-foreground" />
+              <ArrowRight className="mt-1 size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
             </div>
           </Link>
 
@@ -50,7 +54,7 @@ function BookmarkItem({ bookmark }: { bookmark: Bookmark }) {
             aria-label={`Hapus bookmark ${bookmark.surahName} ayat ${bookmark.ayahNumber}`}
             className="shrink-0 text-muted-foreground hover:text-destructive"
           >
-            <Trash2 className="size-4" />
+            <Trash2 className="size-4" aria-hidden="true" />
           </Button>
         </div>
       </CardContent>
@@ -70,7 +74,7 @@ export function BookmarksPage() {
       {/* Page header */}
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-center gap-2">
-          <BookmarkCheck className="size-5 text-primary" />
+          <BookmarkCheck className="size-5 text-primary" aria-hidden="true" />
           <h1 className="text-xl font-bold text-foreground">Bookmark</h1>
         </div>
         {bookmarks.length > 0 && (

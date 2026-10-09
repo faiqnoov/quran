@@ -10,10 +10,11 @@ export function SurahCard({ surah }: SurahCardProps) {
   return (
     <Link
       to={`/surah/${surah.nomor}`}
+      aria-label={`Surah ${surah.nomor} ${surah.namaLatin}, ${surah.arti}, ${surah.jumlahAyat} ayat`}
       className="group block rounded-2xl outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
     >
-      <Card className="h-full transition-colors group-hover:bg-muted/50">
-        <CardContent className="flex items-center gap-4">
+      <Card size="sm" className="h-full transition-colors group-hover:bg-muted/50 sm:py-5">
+        <CardContent className="flex items-center gap-3 sm:gap-4">
           {/* Number badge */}
           <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-sm font-semibold text-primary">
             {surah.nomor}
@@ -32,7 +33,8 @@ export function SurahCard({ surah }: SurahCardProps) {
           {/* Arabic name */}
           <span
             dir="rtl"
-            className="shrink-0 text-xl leading-relaxed text-foreground"
+            lang="ar"
+            className="shrink-0 font-serif text-xl leading-relaxed text-foreground"
           >
             {surah.nama}
           </span>

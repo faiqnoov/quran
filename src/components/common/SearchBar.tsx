@@ -13,10 +13,12 @@ export function SearchBar({ value, onChange, onClear, autoFocus }: SearchBarProp
   return (
     <div className="relative">
       <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-        <Search className="size-4 text-muted-foreground" />
+        <Search className="size-4 text-muted-foreground" aria-hidden="true" />
       </div>
       <Input
-        type="text"
+        type="search"
+        role="searchbox"
+        aria-label="Cari surah atau ayat"
         placeholder="Cari surah (ex: Baqarah, 2, atau 2:255)..."
         className="pl-10 pr-10"
         value={value}
@@ -31,7 +33,7 @@ export function SearchBar({ value, onChange, onClear, autoFocus }: SearchBarProp
           onClick={onClear}
           aria-label="Hapus pencarian"
         >
-          <X className="size-4 text-muted-foreground" />
+          <X className="size-4 text-muted-foreground" aria-hidden="true" />
         </Button>
       )}
     </div>

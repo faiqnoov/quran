@@ -129,7 +129,7 @@
   - Arabic font size (sm/md/lg), show/hide latin, show/hide translation — in a shadcn `sheet` or `dialog`.
   - **Acceptance:** settings apply instantly and persist.
 
-- [ ] **T5.3 Responsive & a11y pass**
+- [x] **T5.3 Responsive & a11y pass**
   - Verify at 360 / 768 / 1280 px. Check focus rings, tab order, contrast in both themes, `aria-label` coverage.
   - **Acceptance:** no horizontal scroll at 360 px; every interactive element reachable by keyboard.
 

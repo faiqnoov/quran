@@ -9,17 +9,17 @@ export function Navbar() {
       <nav className="mx-auto flex h-14 max-w-4xl items-center justify-between px-4">
         <Link
           to="/"
-          className="flex items-center gap-2 text-lg font-semibold text-foreground"
-          aria-label="Beranda"
+          className="flex items-center gap-2 rounded-md text-lg font-semibold text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          aria-label="Al-Qur'an - Kembali ke beranda"
         >
-          <BookOpen className="h-5 w-5" />
+          <BookOpen className="h-5 w-5" aria-hidden="true" />
           <span>Qur'an</span>
         </Link>
 
         <div className="flex items-center gap-1.5 sm:gap-2">
           <Link
             to="/bookmarks"
-            className="px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            className="rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             Bookmark
           </Link>

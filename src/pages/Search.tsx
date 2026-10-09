@@ -33,6 +33,7 @@ export function SearchPage() {
 
   return (
     <div className="space-y-6">
+      <h1 className="sr-only">Pencarian Al-Qur'an</h1>
       <SearchBar
         value={query}
         onChange={handleSearchChange}

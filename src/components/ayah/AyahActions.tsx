@@ -62,7 +62,11 @@ export function AyahActions({ ayah, surahNumber, surahName }: AyahActionsProps) 
         variant="ghost"
         size="icon-sm"
         onClick={handleToggleBookmark}
-        aria-label={isBookmarked ? "Hapus bookmark" : "Tambah bookmark"}
+        aria-label={
+          isBookmarked
+            ? `Hapus bookmark ayat ${ayah.nomorAyat}`
+            : `Simpan bookmark ayat ${ayah.nomorAyat}`
+        }
         className={
           isBookmarked
             ? "text-primary hover:text-primary/80"
@@ -70,9 +74,9 @@ export function AyahActions({ ayah, surahNumber, surahName }: AyahActionsProps) 
         }
       >
         {isBookmarked ? (
-          <BookmarkCheck className="size-4" />
+          <BookmarkCheck className="size-4" aria-hidden="true" />
         ) : (
-          <Bookmark className="size-4" />
+          <Bookmark className="size-4" aria-hidden="true" />
         )}
       </Button>
 
@@ -80,10 +84,10 @@ export function AyahActions({ ayah, surahNumber, surahName }: AyahActionsProps) 
         variant="ghost"
         size="icon-sm"
         onClick={handleCopy}
-        aria-label="Salin ayat ke clipboard"
+        aria-label={`Salin ayat ${ayah.nomorAyat} ke clipboard`}
         className="text-muted-foreground hover:text-foreground"
       >
-        <Copy className="size-4" />
+        <Copy className="size-4" aria-hidden="true" />
       </Button>
     </div>
   )

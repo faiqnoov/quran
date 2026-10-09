@@ -63,6 +63,7 @@ export function SurahHeader({ surah }: SurahHeaderProps) {
         <div className="flex sm:justify-end">
           <span
             dir="rtl"
+            lang="ar"
             className="text-3xl font-serif text-primary sm:text-4xl"
           >
             {surah.nama}
@@ -82,9 +83,10 @@ export function SurahHeader({ surah }: SurahHeaderProps) {
               size="sm"
               className="gap-2 px-2 text-xs font-medium text-muted-foreground hover:text-foreground"
             >
-              <Info className="size-3.5 text-primary" />
+              <Info className="size-3.5 text-primary" aria-hidden="true" />
               <span>{isOpen ? "Sembunyikan Deskripsi" : "Tentang Surah"}</span>
               <ChevronDown
+                aria-hidden="true"
                 className={`size-3.5 transition-transform duration-200 ${
                   isOpen ? "rotate-180" : ""
                 }`}
@@ -93,7 +95,7 @@ export function SurahHeader({ surah }: SurahHeaderProps) {
           </CollapsibleTrigger>
           <CollapsibleContent className="mt-3 overflow-hidden transition-all">
             <div
-              className="rounded-xl bg-muted/40 p-4 text-sm leading-relaxed text-muted-foreground [&_p]:mb-2 [&_p:last-child]:mb-0 [&_i]:italic [&_b]:font-semibold [&_strong]:font-semibold"
+              className="rounded-xl bg-muted/40 p-4 text-sm leading-relaxed text-muted-foreground break-words [&_p]:mb-2 [&_p:last-child]:mb-0 [&_i]:italic [&_b]:font-semibold [&_strong]:font-semibold"
               dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
             />
           </CollapsibleContent>

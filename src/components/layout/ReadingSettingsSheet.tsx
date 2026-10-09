@@ -31,12 +31,14 @@ const PREVIEW_ARABIC_CLASSES: Record<ArabicFontSize, string> = {
 }
 
 export function ReadingSettingsSheet() {
-  const arabicFontSize = useSettingsStore((s) => s.arabicFontSize)
-  const showLatin = useSettingsStore((s) => s.showLatin)
-  const showTranslation = useSettingsStore((s) => s.showTranslation)
-  const setArabicFontSize = useSettingsStore((s) => s.setArabicFontSize)
-  const setShowLatin = useSettingsStore((s) => s.setShowLatin)
-  const setShowTranslation = useSettingsStore((s) => s.setShowTranslation)
+  const {
+    arabicFontSize,
+    showLatin,
+    showTranslation,
+    setArabicFontSize,
+    setShowLatin,
+    setShowTranslation,
+  } = useSettingsStore()
 
   const handleResetDefaults = () => {
     setArabicFontSize("md")
@@ -60,17 +62,14 @@ export function ReadingSettingsSheet() {
 
       <SheetContent
         side="right"
-        className="w-full sm:max-w-md overflow-y-auto"
+        className="w-full sm:max-w-md data-[side=right]:w-full sm:data-[side=right]:max-w-md overflow-y-auto"
         aria-describedby="reading-settings-desc"
       >
         <SheetHeader className="border-b border-border/60 pb-4">
           <SheetTitle className="text-lg font-semibold text-foreground">
             Pengaturan Bacaan
           </SheetTitle>
-          <SheetDescription
-            id="reading-settings-desc"
-            className="text-xs text-muted-foreground"
-          >
+          <SheetDescription id="reading-settings-desc" className="text-xs text-muted-foreground">
             Sesuaikan ukuran huruf dan tampilan ayat Al-Qur'an agar nyaman dibaca.
           </SheetDescription>
         </SheetHeader>
@@ -79,10 +78,7 @@ export function ReadingSettingsSheet() {
           {/* Section 1: Arabic Font Size */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <label
-                id="font-size-label"
-                className="text-sm font-medium text-foreground"
-              >
+              <label id="font-size-label" className="text-sm font-medium text-foreground">
                 Ukuran Tulisan Arab
               </label>
               <span className="text-xs text-muted-foreground">
@@ -94,6 +90,16 @@ export function ReadingSettingsSheet() {
               role="radiogroup"
               aria-labelledby="font-size-label"
               className="grid grid-cols-3 gap-2"
+              onKeyDown={(e) => {
+                const idx = FONT_SIZE_OPTIONS.findIndex((o) => o.value === arabicFontSize)
+                if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+                  e.preventDefault()
+                  setArabicFontSize(FONT_SIZE_OPTIONS[(idx + 1) % FONT_SIZE_OPTIONS.length].value)
+                } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+                  e.preventDefault()
+                  setArabicFontSize(FONT_SIZE_OPTIONS[(idx - 1 + FONT_SIZE_OPTIONS.length) % FONT_SIZE_OPTIONS.length].value)
+                }
+              }}
             >
               {FONT_SIZE_OPTIONS.map(({ value, label, detail }) => {
                 const isSelected = arabicFontSize === value
@@ -103,6 +109,7 @@ export function ReadingSettingsSheet() {
                     type="button"
                     role="radio"
                     aria-checked={isSelected}
+                    tabIndex={isSelected ? 0 : -1}
                     onClick={() => setArabicFontSize(value)}
                     className={[
                       "flex flex-col items-center justify-center rounded-xl border p-2.5 text-center transition-all outline-none",
@@ -113,7 +120,7 @@ export function ReadingSettingsSheet() {
                     ].join(" ")}
                   >
                     <span className="text-sm">{label}</span>
-                    <span className="text-[11px] opacity-75">{detail}</span>
+                    <span className="text-[11px] font-normal opacity-90">{detail}</span>
                   </button>
                 )
               })}
@@ -127,15 +134,10 @@ export function ReadingSettingsSheet() {
             {/* Toggle Latin Transliteration */}
             <div className="flex items-center justify-between gap-4 rounded-xl border border-border/50 bg-card p-3.5">
               <div className="space-y-0.5">
-                <label
-                  htmlFor="toggle-latin"
-                  className="cursor-pointer text-sm font-medium text-foreground"
-                >
+                <label htmlFor="toggle-latin" className="cursor-pointer text-sm font-medium text-foreground">
                   Transliterasi Latin
                 </label>
-                <p className="text-xs text-muted-foreground">
-                  Lafal pengucapan dalam abjad latin
-                </p>
+                <p className="text-xs text-muted-foreground">Lafal pengucapan dalam abjad latin</p>
               </div>
               <Switch
                 id="toggle-latin"
@@ -148,15 +150,10 @@ export function ReadingSettingsSheet() {
             {/* Toggle Indonesian Translation */}
             <div className="flex items-center justify-between gap-4 rounded-xl border border-border/50 bg-card p-3.5">
               <div className="space-y-0.5">
-                <label
-                  htmlFor="toggle-translation"
-                  className="cursor-pointer text-sm font-medium text-foreground"
-                >
+                <label htmlFor="toggle-translation" className="cursor-pointer text-sm font-medium text-foreground">
                   Terjemahan Indonesia
                 </label>
-                <p className="text-xs text-muted-foreground">
-                  Terjemahan arti ayat bahasa Indonesia
-                </p>
+                <p className="text-xs text-muted-foreground">Terjemahan arti ayat bahasa Indonesia</p>
               </div>
               <Switch
                 id="toggle-translation"
@@ -180,19 +177,14 @@ export function ReadingSettingsSheet() {
               >
                 بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
               </p>
-
               {showLatin && (
-                <p className="mt-2 text-xs italic text-muted-foreground">
-                  Bismillāhir-raḥmānir-raḥīm
-                </p>
+                <p className="mt-2 text-xs italic text-muted-foreground">Bismillāhir-raḥmānir-raḥīm</p>
               )}
-
               {showTranslation && (
                 <p className="mt-1.5 text-xs text-foreground/80 leading-relaxed">
                   Dengan nama Allah Yang Maha Pengasih, Maha Penyayang.
                 </p>
               )}
-
               {!showLatin && !showTranslation && (
                 <p className="mt-2 text-[11px] text-muted-foreground text-center italic">
                   Mode mushaf (hanya teks Arab)

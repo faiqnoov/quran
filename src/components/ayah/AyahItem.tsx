@@ -34,7 +34,7 @@ export function AyahItem({ ayah, surahNomor, surahName, isHighlighted }: AyahIte
       id={`ayah-${ayah.nomorAyat}`}
       className={`group scroll-mt-20 border-b border-border/50 py-6 last:border-b-0 ${
         isHighlighted
-          ? "animate-ayah-highlight rounded-xl -mx-3 px-3"
+          ? "animate-ayah-highlight rounded-xl -mx-2 px-2 sm:-mx-3 sm:px-3"
           : ""
       }`}
     >
@@ -54,7 +54,7 @@ export function AyahItem({ ayah, surahNomor, surahName, isHighlighted }: AyahIte
       <p
         dir="rtl"
         lang="ar"
-        className={`mb-4 text-right font-serif text-foreground transition-all duration-150 ${
+        className={`mb-4 text-right font-serif text-foreground break-words transition-all duration-150 ${
           ARABIC_SIZE_CLASSES[arabicFontSize] || ARABIC_SIZE_CLASSES.md
         }`}
       >
@@ -63,14 +63,14 @@ export function AyahItem({ ayah, surahNomor, surahName, isHighlighted }: AyahIte
 
       {/* Latin transliteration */}
       {showLatin && (
-        <p className="mb-2 text-sm leading-relaxed text-muted-foreground italic">
+        <p className="mb-2 text-sm leading-relaxed text-muted-foreground italic break-words">
           {ayah.teksLatin}
         </p>
       )}
 
       {/* Indonesian translation */}
       {showTranslation && (
-        <p className="text-sm leading-relaxed text-foreground/80">
+        <p className="text-sm leading-relaxed text-foreground/80 break-words">
           {ayah.teksIndonesia}
         </p>
       )}
