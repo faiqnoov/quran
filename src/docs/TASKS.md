@@ -137,7 +137,7 @@
   - Error boundary; surah-list fallback to last cached copy when the API fails; `<title>` per route.
   - **Acceptance:** app degrades gracefully with the network offline.
 
-- [ ] **T5.5 Deploy**
+- [x] **T5.5 Deploy**
   - Build, deploy static output, verify SPA rewrite so deep links like `/surah/18` work on refresh.
   - **Acceptance:** live URL; direct deep links load correctly.
 
