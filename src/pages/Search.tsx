@@ -4,10 +4,12 @@ import { SearchBar } from "@/components/common/SearchBar"
 import { SurahList } from "@/components/surah/SurahList"
 import { EmptyState } from "@/components/common/EmptyState"
 import { useSearch } from "@/hooks/useSearch"
+import { usePageTitle } from "@/hooks/usePageTitle"
 
 export function SearchPage() {
   const [searchParams, setSearchParams] = useSearchParams()
   const query = searchParams.get("q") || ""
+  usePageTitle(query ? `Pencarian "${query}"` : "Pencarian Surah")
   const navigate = useNavigate()
 
   const { results, directNavIntent } = useSearch(query)

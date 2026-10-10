@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { Trash2, ArrowRight, BookmarkCheck } from "lucide-react"
 import { toast } from "sonner"
 import { useBookmarkStore, type Bookmark } from "@/store/bookmarkStore"
+import { usePageTitle } from "@/hooks/usePageTitle"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { EmptyState } from "@/components/common/EmptyState"
@@ -63,6 +64,7 @@ function BookmarkItem({ bookmark }: { bookmark: Bookmark }) {
 }
 
 export function BookmarksPage() {
+  usePageTitle("Bookmark Ayat")
   const bookmarks = useBookmarkStore((s) => s.bookmarks)
   const clearAll = useBookmarkStore((s) => s.clearAll)
 

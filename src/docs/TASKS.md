@@ -133,7 +133,7 @@
   - Verify at 360 / 768 / 1280 px. Check focus rings, tab order, contrast in both themes, `aria-label` coverage.
   - **Acceptance:** no horizontal scroll at 360 px; every interactive element reachable by keyboard.
 
-- [ ] **T5.4 Hardening**
+- [x] **T5.4 Hardening**
   - Error boundary; surah-list fallback to last cached copy when the API fails; `<title>` per route.
   - **Acceptance:** app degrades gracefully with the network offline.
 

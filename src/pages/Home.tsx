@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { useSurahList } from "@/hooks/useSurahList"
+import { usePageTitle } from "@/hooks/usePageTitle"
 import { SurahList } from "@/components/surah/SurahList"
 import { LoadingSkeleton } from "@/components/common/LoadingSkeleton"
 import { ErrorState } from "@/components/common/ErrorState"
@@ -8,6 +9,7 @@ import { SearchBar } from "@/components/common/SearchBar"
 import { ContinueReadingCard } from "@/components/common/ContinueReadingCard"
 
 export function HomePage() {
+  usePageTitle("Baca & Cari Surah")
   const { data: surahs, isLoading, isError, error, refetch } = useSurahList()
   const navigate = useNavigate()
 

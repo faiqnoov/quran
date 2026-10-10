@@ -7,6 +7,7 @@ import { SearchPage } from "@/pages/Search"
 import { BookmarksPage } from "@/pages/Bookmarks"
 import { NotFoundPage } from "@/pages/NotFound"
 import { Toaster } from "@/components/ui/sonner"
+import { ErrorBoundary } from "@/components/common/ErrorBoundary"
 
 const TWENTY_FOUR_HOURS = 1000 * 60 * 60 * 24
 
@@ -22,20 +23,22 @@ const queryClient = new QueryClient({
 
 export function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<AppShell />}>
-            <Route index element={<HomePage />} />
-            <Route path="surah/:nomor" element={<SurahDetailPage />} />
-            <Route path="search" element={<SearchPage />} />
-            <Route path="bookmarks" element={<BookmarksPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-      <Toaster position="bottom-center" />
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<AppShell />}>
+              <Route index element={<HomePage />} />
+              <Route path="surah/:nomor" element={<SurahDetailPage />} />
+              <Route path="search" element={<SearchPage />} />
+              <Route path="bookmarks" element={<BookmarksPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+        <Toaster position="bottom-center" />
+      </QueryClientProvider>
+    </ErrorBoundary>
   )
 }
 
