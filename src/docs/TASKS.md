@@ -147,4 +147,4 @@
 
 All 114 surahs readable end-to-end · search finds any surah by name, meaning, or number · bookmarks and last-read survive reload · usable one-handed at 360 px · `pnpm build` clean · deployed.
 
-**Do not start Phase 2 items** (audio player, tafsir, PWA, semantic search) until the above is met.
+✅ **Phase 1 complete.** Phase 2 tasks continue in [`TASKS-PHASE2.md`](./TASKS-PHASE2.md).

@@ -1,7 +1,7 @@
 # PLAN.md — Digital Qur'an Web App
 
 > Primary spec document. Agents must read this before generating or modifying code.
-> Step-by-step execution order lives in `TASKS.md`.
+> Step-by-step execution order lives in `TASKS.md`, and `TASKS-PHASE2.md`.
 
 ## 1. Project Brief
 
