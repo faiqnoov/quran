@@ -38,7 +38,7 @@ Carry forward all rules from Phase 1's `TASKS.md`:
 
 ---
 
-- [ ] **T6.1 Static juz & page data**
+- [x] **T6.1 Static juz & page data**
   - Create `src/data/juz.ts` exporting a typed array of all 30 juz entries:
     ```ts
     export interface JuzEntry {
