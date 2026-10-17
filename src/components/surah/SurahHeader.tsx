@@ -7,6 +7,7 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
 import { sanitizeHtml } from "@/lib/sanitize"
+import { ReadingModeToggle } from "@/components/common/ReadingModeToggle"
 import type { SurahDetail } from "@/types/quran"
 
 export interface SurahHeaderProps {
@@ -25,7 +26,7 @@ export interface SurahHeaderProps {
 /**
  * Header section for surah detail page.
  * Displays surah name in Arabic and Latin, meaning, ayah count, revelation place,
- * and a collapsible containing the sanitized HTML description (collapsed by default).
+ * reading mode toggle, and a collapsible containing the sanitized HTML description.
  */
 export function SurahHeader({ surah }: SurahHeaderProps) {
   const [isOpen, setIsOpen] = React.useState(false)
@@ -60,7 +61,7 @@ export function SurahHeader({ surah }: SurahHeaderProps) {
           </div>
         </div>
 
-        <div className="flex sm:justify-end">
+        <div className="flex flex-row items-center justify-between gap-3 sm:flex-col sm:items-end">
           <span
             dir="rtl"
             lang="ar"
@@ -68,6 +69,7 @@ export function SurahHeader({ surah }: SurahHeaderProps) {
           >
             {surah.nama}
           </span>
+          <ReadingModeToggle />
         </div>
       </div>
 

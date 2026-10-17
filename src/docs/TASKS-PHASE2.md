@@ -69,7 +69,7 @@ Carry forward all rules from Phase 1's `TASKS.md`:
     - `getSurahsOnPage(page: number): number[]` — returns surah numbers present on this page (a page can span 2+ surahs)
   - **Acceptance:** all functions are typed, unit-tested (at least boundary cases — first/last juz, first/last page, mid-surah page breaks, pages spanning multiple surahs). `pnpm build` clean.
 
-- [ ] **T6.2 Reading mode store & view toggle**
+- [x] **T6.2 Reading mode store & view toggle**
   - Add `readingMode: 'ayah' | 'mushaf'` to `settingsStore` (persisted).
   - Create a toggle button (icon-based, show list/page icons) in the surah detail header area.
   - When mode is `'ayah'`: render the existing `AyahItem` list (current behavior, unchanged).

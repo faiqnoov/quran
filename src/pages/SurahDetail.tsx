@@ -3,9 +3,11 @@ import { useParams, useSearchParams } from "react-router-dom"
 import { useSurahDetail } from "@/hooks/useSurahDetail"
 import { useLastReadTracker } from "@/hooks/useLastReadTracker"
 import { usePageTitle } from "@/hooks/usePageTitle"
+import { useSettingsStore } from "@/store/settingsStore"
 import { SurahHeader } from "@/components/surah/SurahHeader"
 import { AyahItem } from "@/components/ayah/AyahItem"
 import { BismillahHeader } from "@/components/ayah/BismillahHeader"
+import { MushafPageView } from "@/components/mushaf/MushafPageView"
 import { SurahNavigation } from "@/components/surah/SurahNavigation"
 import { ErrorState } from "@/components/common/ErrorState"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -29,6 +31,7 @@ export function SurahDetailPage() {
   const ayatParam = searchParams.get("ayat")
   const targetAyat = ayatParam ? Number(ayatParam) : null
   const [highlightedAyat, setHighlightedAyat] = useState<number | null>(null)
+  const readingMode = useSettingsStore((s) => s.readingMode)
 
   // Scroll to the target ayah once data is loaded
   useEffect(() => {
@@ -97,21 +100,25 @@ export function SurahDetailPage() {
     <div className="space-y-6">
       <SurahHeader surah={surah} />
 
-      <div>
-        <BismillahHeader surahNomor={surah.nomor} />
-
+      {readingMode === "mushaf" ? (
+        <MushafPageView surah={surah} />
+      ) : (
         <div>
-          {surah.ayat.map((ayah) => (
-            <AyahItem
-              key={ayah.nomorAyat}
-              ayah={ayah}
-              surahNomor={surah.nomor}
-              surahName={surah.namaLatin}
-              isHighlighted={highlightedAyat === ayah.nomorAyat}
-            />
-          ))}
+          <BismillahHeader surahNomor={surah.nomor} />
+
+          <div>
+            {surah.ayat.map((ayah) => (
+              <AyahItem
+                key={ayah.nomorAyat}
+                ayah={ayah}
+                surahNomor={surah.nomor}
+                surahName={surah.namaLatin}
+                isHighlighted={highlightedAyat === ayah.nomorAyat}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       <SurahNavigation
         prev={surah.suratSebelumnya}

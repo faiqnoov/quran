@@ -38,12 +38,14 @@ export function ReadingSettingsSheet() {
     setArabicFontSize,
     setShowLatin,
     setShowTranslation,
+    setReadingMode,
   } = useSettingsStore()
 
   const handleResetDefaults = () => {
     setArabicFontSize("md")
     setShowLatin(true)
     setShowTranslation(true)
+    setReadingMode("ayah")
   }
 
   return (
