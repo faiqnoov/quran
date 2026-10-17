@@ -76,7 +76,7 @@ Carry forward all rules from Phase 1's `TASKS.md`:
   - When mode is `'mushaf'`: render the new `MushafPageView` (built in T6.4).
   - **Acceptance:** toggle switches modes instantly; preference persists across sessions and navigation; default is `'ayah'` (existing behavior).
 
-- [ ] **T6.3 `MushafPageView` component — continuous Arabic text**
+- [x] **T6.3 `MushafPageView` component — continuous Arabic text**
   - Create `src/components/mushaf/MushafPageView.tsx`.
   - Given a mushaf page number, fetch the required surah detail(s) for that page. A single page may contain ayahs from 1–3 surahs (use `getSurahsOnPage` + parallel `getSurahDetail` calls).
   - Render the Arabic text as **continuous flowing RTL paragraph(s)**, not one block per ayah. Ayahs are separated only by inline end-markers (e.g. `﴿١﴾` using U+FD3E / U+FD3F ornamental parentheses or a styled `<span>`).

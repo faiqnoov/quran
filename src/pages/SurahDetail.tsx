@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { useParams, useSearchParams } from "react-router-dom"
 import { useSurahDetail } from "@/hooks/useSurahDetail"
 import { useLastReadTracker } from "@/hooks/useLastReadTracker"
 import { usePageTitle } from "@/hooks/usePageTitle"
 import { useSettingsStore } from "@/store/settingsStore"
+import { getPageForAyah } from "@/data"
 import { SurahHeader } from "@/components/surah/SurahHeader"
 import { AyahItem } from "@/components/ayah/AyahItem"
 import { BismillahHeader } from "@/components/ayah/BismillahHeader"
@@ -32,6 +33,11 @@ export function SurahDetailPage() {
   const targetAyat = ayatParam ? Number(ayatParam) : null
   const [highlightedAyat, setHighlightedAyat] = useState<number | null>(null)
   const readingMode = useSettingsStore((s) => s.readingMode)
+
+  const mushafPage = useMemo(() => {
+    if (!surah) return 1
+    return getPageForAyah(surah.nomor, targetAyat || 1)
+  }, [surah, targetAyat])
 
   // Scroll to the target ayah once data is loaded
   useEffect(() => {
@@ -101,7 +107,18 @@ export function SurahDetailPage() {
       <SurahHeader surah={surah} />
 
       {readingMode === "mushaf" ? (
-        <MushafPageView surah={surah} />
+        <MushafPageView
+          page={mushafPage}
+          surah={surah}
+          highlightedAyah={
+            highlightedAyat
+              ? { surah: surah.nomor, ayah: highlightedAyat }
+              : null
+          }
+          onAyahClick={(_surahNomor, ayahNomor) =>
+            setHighlightedAyat(ayahNomor)
+          }
+        />
       ) : (
         <div>
           <BismillahHeader surahNomor={surah.nomor} />
