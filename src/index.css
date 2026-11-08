@@ -1,3 +1,5 @@
+@import "@fontsource/noto-naskh-arabic/400.css";
+@import "@fontsource/noto-naskh-arabic/700.css";
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -111,6 +113,8 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: "Noto Naskh Arabic", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-arabic: "Noto Naskh Arabic", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --animate-ayah-highlight: ayah-highlight 2s ease-out forwards;
 }
 
