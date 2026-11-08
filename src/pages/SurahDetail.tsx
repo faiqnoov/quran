@@ -33,11 +33,18 @@ export function SurahDetailPage() {
   const targetAyat = ayatParam ? Number(ayatParam) : null
   const [highlightedAyat, setHighlightedAyat] = useState<number | null>(null)
   const readingMode = useSettingsStore((s) => s.readingMode)
+  const [currentMushafPage, setCurrentMushafPage] = useState<number | null>(null)
 
-  const mushafPage = useMemo(() => {
+  useEffect(() => {
+    setCurrentMushafPage(null)
+  }, [surah?.nomor])
+
+  const defaultMushafPage = useMemo(() => {
     if (!surah) return 1
     return getPageForAyah(surah.nomor, targetAyat || 1)
   }, [surah, targetAyat])
+
+  const activeMushafPage = currentMushafPage ?? defaultMushafPage
 
   // Scroll to the target ayah once data is loaded
   useEffect(() => {
@@ -108,7 +115,7 @@ export function SurahDetailPage() {
 
       {readingMode === "mushaf" ? (
         <MushafPageView
-          page={mushafPage}
+          page={activeMushafPage}
           surah={surah}
           highlightedAyah={
             highlightedAyat
@@ -118,6 +125,10 @@ export function SurahDetailPage() {
           onAyahClick={(_surahNomor, ayahNomor) =>
             setHighlightedAyat(ayahNomor)
           }
+          onPageChange={(newPage) => {
+            setCurrentMushafPage(newPage)
+            window.scrollTo({ top: 0, behavior: "smooth" })
+          }}
         />
       ) : (
         <div>

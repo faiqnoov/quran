@@ -86,7 +86,7 @@ Carry forward all rules from Phase 1's `TASKS.md`:
   - Latin and Indonesian translation are **not** shown inline in mushaf mode (they appear in the bottom sheet on tap).
   - **Acceptance:** continuous text flows naturally like a physical mushaf; ayah markers are inline; no translation/latin clutter; surah boundaries mid-page render a visual separator; text is never truncated; RTL is correct throughout.
 
-- [ ] **T6.4 Mushaf page header & page-level navigation**
+- [x] **T6.4 Mushaf page header & page-level navigation**
   - Create `src/components/mushaf/MushafPageHeader.tsx`.
   - Header shows: "Halaman {page}" (primary), "Juz {juz}" (secondary).
   - If the page contains ayahs from multiple surahs, show tabs or a horizontal list of surah names at the top.
