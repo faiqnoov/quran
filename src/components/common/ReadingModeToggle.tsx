@@ -41,7 +41,7 @@ export function ReadingModeToggle({
         aria-label="Mode Ayat (Daftar Ayat)"
         title="Mode Ayat (Daftar)"
         className={cn(
-          "inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 font-medium transition-all duration-150 outline-none",
+          "inline-flex items-center gap-1.5 rounded-lg px-2 py-1 font-medium transition-all duration-150 outline-none sm:px-2.5",
           "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1",
           readingMode === "ayah"
             ? "bg-background text-foreground shadow-xs font-semibold"
@@ -49,7 +49,7 @@ export function ReadingModeToggle({
         )}
       >
         <List className="size-3.5" aria-hidden="true" />
-        {showLabels && <span>Ayat</span>}
+        {showLabels && <span className="hidden sm:inline">Ayat</span>}
       </button>
 
       <button
@@ -60,7 +60,7 @@ export function ReadingModeToggle({
         aria-label="Mode Mushaf (Per Halaman)"
         title="Mode Mushaf (Halaman)"
         className={cn(
-          "inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 font-medium transition-all duration-150 outline-none",
+          "inline-flex items-center gap-1.5 rounded-lg px-2 py-1 font-medium transition-all duration-150 outline-none sm:px-2.5",
           "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1",
           readingMode === "mushaf"
             ? "bg-background text-foreground shadow-xs font-semibold"
@@ -68,7 +68,7 @@ export function ReadingModeToggle({
         )}
       >
         <BookOpen className="size-3.5" aria-hidden="true" />
-        {showLabels && <span>Mushaf</span>}
+        {showLabels && <span className="hidden sm:inline">Mushaf</span>}
       </button>
     </div>
   )

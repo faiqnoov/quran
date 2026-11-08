@@ -111,7 +111,7 @@ export function SurahDetailPage() {
 
   return (
     <div className="space-y-6">
-      <SurahHeader surah={surah} />
+      {readingMode === "ayah" && <SurahHeader surah={surah} />}
 
       {readingMode === "mushaf" ? (
         <MushafPageView

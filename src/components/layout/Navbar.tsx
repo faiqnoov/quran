@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { BookOpen } from "lucide-react"
 import { ThemeToggle } from "./ThemeToggle"
 import { ReadingSettingsSheet } from "./ReadingSettingsSheet"
+import { ReadingModeToggle } from "@/components/common/ReadingModeToggle"
 
 export function Navbar() {
   return (
@@ -17,6 +18,7 @@ export function Navbar() {
         </Link>
 
         <div className="flex items-center gap-1.5 sm:gap-2">
+          <ReadingModeToggle />
           <Link
             to="/bookmarks"
             className="rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring"
