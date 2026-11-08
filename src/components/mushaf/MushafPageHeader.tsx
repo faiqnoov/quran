@@ -43,27 +43,25 @@ export function MushafPageHeader({
 
   return (
     <div className={cn("space-y-4 select-none", className)}>
-      {/* Top Navigation Bar: Prev Button, Page/Juz Title, Next Button */}
+      {/* Top Navigation Bar: RTL Mushaf style (Next page on left ←, Prev page on right →) */}
       <div className="flex items-center justify-between border-b border-border/60 pb-3">
-        {/* Previous page arrow (hidden on page 1) */}
         <div className="w-24">
-          {hasPrev ? (
+          {hasNext ? (
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => onPageChange(page - 1)}
-              aria-label="Halaman sebelumnya"
+              onClick={() => onPageChange(page + 1)}
+              aria-label="Halaman selanjutnya"
               className="flex items-center gap-1 px-2 text-xs text-muted-foreground hover:text-foreground"
             >
               <ChevronLeft className="size-4" aria-hidden="true" />
-              <span className="hidden sm:inline">Hal. {page - 1}</span>
+              <span className="hidden sm:inline">Hal. {page + 1}</span>
             </Button>
           ) : (
             <div className="size-8" />
           )}
         </div>
 
-        {/* Center: Primary Page Title & Secondary Juz Badge */}
         <div className="flex flex-col items-center justify-center text-center">
           <h2 className="text-base font-bold tracking-tight text-foreground sm:text-lg">
             Halaman {page}
@@ -73,17 +71,16 @@ export function MushafPageHeader({
           </span>
         </div>
 
-        {/* Next page arrow (hidden on page 604) */}
         <div className="flex w-24 justify-end">
-          {hasNext ? (
+          {hasPrev ? (
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => onPageChange(page + 1)}
-              aria-label="Halaman selanjutnya"
+              onClick={() => onPageChange(page - 1)}
+              aria-label="Halaman sebelumnya"
               className="flex items-center gap-1 px-2 text-xs text-muted-foreground hover:text-foreground"
             >
-              <span className="hidden sm:inline">Hal. {page + 1}</span>
+              <span className="hidden sm:inline">Hal. {page - 1}</span>
               <ChevronRight className="size-4" aria-hidden="true" />
             </Button>
           ) : (
