@@ -3,9 +3,12 @@ import { WifiOff } from "lucide-react"
 import { Navbar } from "./Navbar"
 import { ErrorBoundary } from "@/components/common/ErrorBoundary"
 import { useOnlineStatus } from "@/hooks/useOnlineStatus"
+import { useSettingsStore } from "@/store/settingsStore"
+import { cn } from "@/lib/utils"
 
 export function AppShell() {
   const isOnline = useOnlineStatus()
+  const readingMode = useSettingsStore((s) => s.readingMode)
 
   return (
     <div className="flex min-h-svh flex-col bg-background text-foreground">
@@ -34,7 +37,10 @@ export function AppShell() {
       <main
         id="main-content"
         tabIndex={-1}
-        className="mx-auto w-full max-w-4xl flex-1 px-4 py-6 outline-none"
+        className={cn(
+          "mx-auto w-full max-w-4xl flex-1 outline-none",
+          readingMode === "mushaf" ? "px-3 py-2 sm:px-4 sm:py-3" : "px-4 py-6"
+        )}
       >
         <ErrorBoundary>
           <Outlet />

@@ -110,7 +110,7 @@ export function SurahDetailPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className={readingMode === "mushaf" ? "space-y-2" : "space-y-6"}>
       {readingMode === "ayah" && <SurahHeader surah={surah} />}
 
       {readingMode === "mushaf" ? (
@@ -148,10 +148,12 @@ export function SurahDetailPage() {
         </div>
       )}
 
-      <SurahNavigation
-        prev={surah.suratSebelumnya}
-        next={surah.suratSelanjutnya}
-      />
+      {readingMode === "ayah" && (
+        <SurahNavigation
+          prev={surah.suratSebelumnya}
+          next={surah.suratSelanjutnya}
+        />
+      )}
     </div>
   )
 }

@@ -42,9 +42,9 @@ export function MushafPageHeader({
   const hasMultipleSurahs = surahs.length > 1
 
   return (
-    <div className={cn("space-y-4 select-none", className)}>
+    <div className={cn("space-y-1.5 select-none", className)}>
       {/* Top Navigation Bar: RTL Mushaf style (Next page on left ←, Prev page on right →) */}
-      <div className="flex items-center justify-between border-b border-border/60 pb-3">
+      <div className="flex items-center justify-between border-b border-border/60 pb-1.5">
         <div className="w-24">
           {hasNext ? (
             <Button
@@ -52,22 +52,22 @@ export function MushafPageHeader({
               size="sm"
               onClick={() => onPageChange(page + 1)}
               aria-label="Halaman selanjutnya"
-              className="flex items-center gap-1 px-2 text-xs text-muted-foreground hover:text-foreground"
+              className="flex h-7 items-center gap-1 px-2 text-xs text-muted-foreground hover:text-foreground"
             >
               <ChevronLeft className="size-4" aria-hidden="true" />
               <span className="hidden sm:inline">Hal. {page + 1}</span>
             </Button>
           ) : (
-            <div className="size-8" />
+            <div className="size-7" />
           )}
         </div>
 
-        <div className="flex flex-col items-center justify-center text-center">
-          <h2 className="text-base font-bold tracking-tight text-foreground sm:text-lg">
+        <div className="flex items-baseline justify-center gap-1.5 text-center">
+          <h2 className="text-sm font-bold tracking-tight text-foreground">
             Halaman {page}
           </h2>
           <span className="text-xs font-medium text-muted-foreground">
-            Juz {juzNumber}
+            · Juz {juzNumber}
           </span>
         </div>
 
@@ -78,13 +78,13 @@ export function MushafPageHeader({
               size="sm"
               onClick={() => onPageChange(page - 1)}
               aria-label="Halaman sebelumnya"
-              className="flex items-center gap-1 px-2 text-xs text-muted-foreground hover:text-foreground"
+              className="flex h-7 items-center gap-1 px-2 text-xs text-muted-foreground hover:text-foreground"
             >
               <span className="hidden sm:inline">Hal. {page - 1}</span>
               <ChevronRight className="size-4" aria-hidden="true" />
             </Button>
           ) : (
-            <div className="size-8" />
+            <div className="size-7" />
           )}
         </div>
       </div>
@@ -94,7 +94,7 @@ export function MushafPageHeader({
         <div
           role="tablist"
           aria-label="Daftar surah pada halaman ini"
-          className="flex items-center gap-1.5 overflow-x-auto py-1"
+          className="flex items-center gap-1 overflow-x-auto py-0.5"
         >
           {surahs.map((surah) => {
             const isSelected = activeSurah?.nomor === surah.nomor
@@ -105,7 +105,7 @@ export function MushafPageHeader({
                 aria-selected={isSelected}
                 onClick={() => onSelectSurah?.(surah.nomor)}
                 className={cn(
-                  "flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium whitespace-nowrap transition-all",
+                  "flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-medium whitespace-nowrap transition-all",
                   "focus-visible:ring-2 focus-visible:ring-ring outline-none",
                   isSelected
                     ? "bg-primary text-primary-foreground shadow-xs font-semibold"
@@ -124,23 +124,23 @@ export function MushafPageHeader({
       {activeSurah && (
         <div
           data-testid="mushaf-header-surah-banner"
-          className="relative flex items-center justify-between rounded-xl border-2 border-primary/30 bg-primary/5 px-4 py-2.5 shadow-2xs dark:border-primary/40 dark:bg-primary/10"
+          className="relative flex items-center justify-between rounded-lg border border-primary/30 bg-primary/5 px-3 py-1 shadow-2xs dark:border-primary/40 dark:bg-primary/10"
         >
-          <span className="text-xs font-semibold tracking-wider text-muted-foreground">
+          <span className="text-[11px] font-semibold tracking-wider text-muted-foreground">
             {activeSurah.tempatTurun}
           </span>
 
-          <div className="flex items-center justify-center rounded-full border border-primary/40 bg-background/90 px-6 py-1 shadow-xs">
+          <div className="flex items-center justify-center rounded-full border border-primary/40 bg-background/90 px-4 py-0.5 shadow-xs">
             <span
               dir="rtl"
               lang="ar"
-              className="font-serif text-2xl font-bold text-primary sm:text-3xl"
+              className="font-serif text-base font-bold leading-snug text-primary sm:text-lg"
             >
               {activeSurah.nama}
             </span>
           </div>
 
-          <span className="text-xs font-semibold tracking-wider text-muted-foreground">
+          <span className="text-[11px] font-semibold tracking-wider text-muted-foreground">
             {activeSurah.jumlahAyat} Ayat
           </span>
         </div>
