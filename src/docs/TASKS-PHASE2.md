@@ -94,7 +94,7 @@ Carry forward all rules from Phase 1's `TASKS.md`:
   - Add prev/next page arrows (swipe gesture support is a nice-to-have, not required).
   - **Acceptance:** header info is accurate for every page; multi-surah pages show all surah names; prev/next navigate correctly; page 1 hides "previous", page 604 hides "next".
 
-- [ ] **T6.5 Mushaf ayah bottom sheet**
+- [x] **T6.5 Mushaf ayah bottom sheet**
   - Create `src/components/mushaf/MushafAyahSheet.tsx` using shadcn `sheet` (or `drawer` on mobile).
   - Triggered when tapping an ayah span in the `MushafPageView`.
   - Sheet header: "QS. {Surah Latin Name} {surahNumber}: Ayat {ayahNumber}".

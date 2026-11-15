@@ -122,9 +122,6 @@ export function SurahDetailPage() {
               ? { surah: surah.nomor, ayah: highlightedAyat }
               : null
           }
-          onAyahClick={(_surahNomor, ayahNomor) =>
-            setHighlightedAyat(ayahNomor)
-          }
           onPageChange={(newPage) => {
             setCurrentMushafPage(newPage)
             window.scrollTo({ top: 0, behavior: "smooth" })

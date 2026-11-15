@@ -1,9 +1,10 @@
-import { useMemo, useRef, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { useMushafPage } from "@/hooks/useMushafPage"
 import { useSettingsStore, type ArabicFontSize } from "@/store/settingsStore"
 import { getPageForAyah } from "@/data"
 import { MushafPageHeader } from "./MushafPageHeader"
 import { SurahBanner } from "./SurahBanner"
+import { MushafAyahSheet, type MushafAyahSelection } from "./MushafAyahSheet"
 import { toArabicDigits, cn } from "@/lib/utils"
 import { ErrorState } from "@/components/common/ErrorState"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -39,6 +40,8 @@ export function MushafPageView({
   const [activeSurahNomor, setActiveSurahNomor] = useState<number | undefined>(
     undefined
   )
+  const [selection, setSelection] = useState<MushafAyahSelection | null>(null)
+  useEffect(() => setSelection(null), [page])
 
   const resolvedPage = useMemo(() => {
     if (page && page >= 1 && page <= 604) {
@@ -153,6 +156,13 @@ export function MushafPageView({
                   const isHighlighted =
                     highlightedAyah?.surah === section.surah.nomor &&
                     highlightedAyah?.ayah === ayah.nomorAyat
+                  const isSelected =
+                    selection?.surah.nomor === section.surah.nomor &&
+                    selection?.ayah.nomorAyat === ayah.nomorAyat
+                  const handleSelect = () => {
+                    setSelection({ surah: section.surah, ayah })
+                    onAyahClick?.(section.surah.nomor, ayah.nomorAyat)
+                  }
 
                   return (
                     <span
@@ -162,19 +172,22 @@ export function MushafPageView({
                       data-surah={section.surah.nomor}
                       role="button"
                       tabIndex={0}
+                      aria-haspopup="dialog"
+                      aria-pressed={isSelected}
                       aria-label={`QS. ${section.surah.namaLatin} Ayat ${ayah.nomorAyat}`}
-                      onClick={() => onAyahClick?.(section.surah.nomor, ayah.nomorAyat)}
+                      onClick={handleSelect}
                       onKeyDown={(e) => {
                         if (e.key === "Enter" || e.key === " ") {
                           e.preventDefault()
-                          onAyahClick?.(section.surah.nomor, ayah.nomorAyat)
+                          handleSelect()
                         }
                       }}
                       className={cn(
                         "inline cursor-pointer rounded-sm px-0.5 py-0.5 transition-colors duration-150 outline-none",
                         "hover:bg-primary/10 hover:text-primary focus-visible:ring-1 focus-visible:ring-ring",
                         isHighlighted &&
-                          "bg-amber-500/20 text-foreground ring-1 ring-amber-500/40 dark:bg-amber-400/25"
+                          "bg-amber-500/20 text-foreground ring-1 ring-amber-500/40 dark:bg-amber-400/25",
+                        isSelected && "bg-primary/15 text-primary ring-1 ring-primary/40"
                       )}
                     >
                       <span>{ayah.teksArab}</span>
@@ -192,6 +205,8 @@ export function MushafPageView({
           )
         })}
       </div>
+
+      <MushafAyahSheet selection={selection} onClose={() => setSelection(null)} />
     </div>
   )
 }
