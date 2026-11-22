@@ -4,7 +4,7 @@ import { toast } from "sonner"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { useBookmarkStore } from "@/store/bookmarkStore"
 import { useLastReadStore } from "@/store/lastReadStore"
-import { cn } from "@/lib/utils"
+import { cn, formatArabicText } from "@/lib/utils"
 import type { Ayah, SurahDetail } from "@/types/quran"
 
 export interface MushafAyahSelection {
@@ -70,7 +70,13 @@ export function MushafAyahSheet({ selection, onClose }: MushafAyahSheetProps) {
 
   function handleCopy() {
     if (!surah || !ayah) return
-    const text = [ayah.teksArab, "", `"${ayah.teksIndonesia}"`, "", `— QS. ${surah.namaLatin}: ${ayah.nomorAyat}`].join("\n")
+    const text = [
+      formatArabicText(ayah.teksArab),
+      "",
+      `"${ayah.teksIndonesia}"`,
+      "",
+      `— QS. ${surah.namaLatin}: ${ayah.nomorAyat}`,
+    ].join("\n")
     navigator.clipboard
       .writeText(text)
       .then(() => toast.success("Tersalin ke clipboard", { duration: 2000 }))

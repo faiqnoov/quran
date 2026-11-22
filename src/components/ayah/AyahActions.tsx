@@ -2,6 +2,7 @@ import { Bookmark, BookmarkCheck, Copy } from "lucide-react"
 import { toast } from "sonner"
 import { Button } from "@/components/ui/button"
 import { useBookmarkStore } from "@/store/bookmarkStore"
+import { formatArabicText } from "@/lib/utils"
 import type { Ayah } from "@/types/quran"
 
 interface AyahActionsProps {
@@ -41,7 +42,7 @@ export function AyahActions({ ayah, surahNumber, surahName }: AyahActionsProps) 
 
   async function handleCopy() {
     const text = [
-      ayah.teksArab,
+      formatArabicText(ayah.teksArab),
       "",
       `"${ayah.teksIndonesia}"`,
       "",

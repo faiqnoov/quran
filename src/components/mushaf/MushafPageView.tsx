@@ -5,7 +5,7 @@ import { getPageForAyah } from "@/data"
 import { MushafPageHeader } from "./MushafPageHeader"
 import { SurahBanner } from "./SurahBanner"
 import { MushafAyahSheet, type MushafAyahSelection } from "./MushafAyahSheet"
-import { toArabicDigits, cn } from "@/lib/utils"
+import { toArabicDigits, formatArabicText, cn } from "@/lib/utils"
 import { ErrorState } from "@/components/common/ErrorState"
 import { Skeleton } from "@/components/ui/skeleton"
 import type { SurahDetail } from "@/types/quran"
@@ -199,7 +199,7 @@ export function MushafPageView({
                         isSelected && "bg-primary/15 text-primary ring-1 ring-primary/40"
                       )}
                     >
-                      <span>{ayah.teksArab}</span>
+                      <span>{formatArabicText(ayah.teksArab).trim()}</span>
                       <span
                         className="mx-1 inline-flex items-center justify-center font-serif text-[0.75em] font-normal text-primary/80 select-none align-middle"
                         aria-hidden="true"

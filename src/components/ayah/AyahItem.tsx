@@ -1,6 +1,7 @@
 import type { Ayah } from "@/types/quran"
 import { AyahActions } from "@/components/ayah/AyahActions"
 import { useSettingsStore, type ArabicFontSize } from "@/store/settingsStore"
+import { formatArabicText } from "@/lib/utils"
 
 interface AyahItemProps {
   ayah: Ayah
@@ -58,7 +59,7 @@ export function AyahItem({ ayah, surahNomor, surahName, isHighlighted }: AyahIte
           ARABIC_SIZE_CLASSES[arabicFontSize] || ARABIC_SIZE_CLASSES.md
         }`}
       >
-        {ayah.teksArab}
+        {formatArabicText(ayah.teksArab)}
       </p>
 
       {/* Latin transliteration */}
