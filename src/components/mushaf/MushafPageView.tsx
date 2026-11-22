@@ -62,15 +62,24 @@ export function MushafPageView({
   )
 
   const touchStartXRef = useRef<number | null>(null)
+  const touchStartYRef = useRef<number | null>(null)
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartXRef.current = e.touches[0].clientX
+    touchStartYRef.current = e.touches[0].clientY
   }
   const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartXRef.current === null) return
+    if (touchStartXRef.current === null || touchStartYRef.current === null) return
     const deltaX = e.changedTouches[0].clientX - touchStartXRef.current
+    const deltaY = e.changedTouches[0].clientY - touchStartYRef.current
     touchStartXRef.current = null
-    if (deltaX < -60 && resolvedPage < 604) onPageChange?.(resolvedPage + 1)
-    else if (deltaX > 60 && resolvedPage > 1) onPageChange?.(resolvedPage - 1)
+    touchStartYRef.current = null
+
+    // Only trigger if horizontal swipe is dominant and exceeds threshold
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 60) {
+      // In RTL Mushaf: swiping right advances to next page, swiping left goes to previous page
+      if (deltaX > 0 && resolvedPage < 604) onPageChange?.(resolvedPage + 1)
+      else if (deltaX < 0 && resolvedPage > 1) onPageChange?.(resolvedPage - 1)
+    }
   }
 
   const handleSelectSurah = (nomor: number) => {
