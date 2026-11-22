@@ -9,6 +9,7 @@ import { SurahHeader } from "@/components/surah/SurahHeader"
 import { AyahItem } from "@/components/ayah/AyahItem"
 import { BismillahHeader } from "@/components/ayah/BismillahHeader"
 import { MushafPageView } from "@/components/mushaf/MushafPageView"
+import { MushafPageSkeleton } from "@/components/mushaf/MushafPageSkeleton"
 import { SurahNavigation } from "@/components/surah/SurahNavigation"
 import { ErrorState } from "@/components/common/ErrorState"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -68,6 +69,14 @@ export function SurahDetailPage() {
   }, [surah, targetAyat])
 
   if (isLoading) {
+    if (readingMode === "mushaf") {
+      return (
+        <div className="space-y-2">
+          <MushafPageSkeleton />
+        </div>
+      )
+    }
+
     return (
       <div className="space-y-6">
         {/* Header skeleton */}

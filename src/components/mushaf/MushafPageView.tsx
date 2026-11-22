@@ -4,10 +4,10 @@ import { useSettingsStore, type ArabicFontSize } from "@/store/settingsStore"
 import { getPageForAyah } from "@/data"
 import { MushafPageHeader } from "./MushafPageHeader"
 import { SurahBanner } from "./SurahBanner"
+import { MushafPageSkeleton } from "./MushafPageSkeleton"
 import { MushafAyahSheet, type MushafAyahSelection } from "./MushafAyahSheet"
 import { toArabicDigits, formatArabicText, cn } from "@/lib/utils"
 import { ErrorState } from "@/components/common/ErrorState"
-import { Skeleton } from "@/components/ui/skeleton"
 import type { SurahDetail } from "@/types/quran"
 
 const MUSHAF_FONT_CLASSES: Record<ArabicFontSize, string> = {
@@ -88,19 +88,7 @@ export function MushafPageView({
   }
 
   if (isLoading) {
-    return (
-      <div className="space-y-3 rounded-xl border border-border bg-card p-3 shadow-xs sm:px-5 sm:py-3.5">
-        <div className="flex items-center justify-between border-b border-border/60 pb-2">
-          <Skeleton className="h-5 w-24" />
-          <Skeleton className="h-5 w-16" />
-        </div>
-        <div className="space-y-3 py-2">
-          <Skeleton className="h-8 w-full" />
-          <Skeleton className="h-8 w-full" />
-          <Skeleton className="h-8 w-5/6 mr-auto" />
-        </div>
-      </div>
-    )
+    return <MushafPageSkeleton />
   }
 
   if (isError || surahSections.length === 0) {
